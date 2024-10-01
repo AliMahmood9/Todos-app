@@ -1,47 +1,70 @@
+import { useContext, useState } from "react";
+import { MdDelete, MdModeEditOutline } from "react-icons/md";
 import styles from "./Todo.module.scss";
-import { MdDelete } from "react-icons/md";
-import { MdModeEditOutline } from "react-icons/md";
+import { TodosContext } from "../../context/TodosContext";
+import AddTodoModal from "../AddTodoModal";
 
-function Todo({ todo, onChangeTodo }) {
+function Todo({ todo }) {
+  const { onDeleteTodo, completeTodo } = useContext(TodosContext);
   const { title, createdTime, createdAt } = todo;
+  const [showModal, setShowModal] = useState(false);
+
+  const todoTitleClass = todo.completed ? styles.strikeThrough : "";
+
+  const onOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const onCloseModal = () => {
+    setShowModal(false);
+  };
 
   const onChecked = (e) => {
-    if (e.target.checked) {
-      onChangeTodo({ action: "completed", id: todo.id });
-    }
+    completeTodo(todo.id);
   };
-  return (
-    <div className={styles.container}>
-      <div className={styles.detailsWrapper}>
-        <input
-          type="checkbox"
-          name="check-todo"
-          id="checkTodo"
-          checked={todo.completed}
-          onChange={onChecked}
-        />
 
-        <div>
-          <p className={todo.completed ? styles.strikeThrough : ""}>{title}</p>
-          <p>
-            {createdTime},{createdAt}
-          </p>
+  const handleDelete = () => {
+    onDeleteTodo(todo.id);
+  };
+
+  const handleEdit = () => {
+    onOpenModal(true);
+  };
+
+  return (
+    <>
+      <AddTodoModal show={showModal} onClose={onCloseModal} todo={todo} />
+
+      <div className={styles.container}>
+        <div className={styles.detailsWrapper}>
+          <label htmlFor={`checkTodo-${todo.id}`}>
+            <input
+              type="checkbox"
+              name="check-todo"
+              id={`checkTodo-${todo.id}`}
+              checked={todo.completed}
+              onChange={onChecked}
+            />
+          </label>
+
+          <div>
+            <p className={todoTitleClass}>{title}</p>
+            <p>
+              {createdTime}, {createdAt}
+            </p>
+          </div>
         </div>
 
-        <div></div>
+        <div className={styles.actionsWrapper}>
+          <span>
+            <MdDelete onClick={handleDelete} />
+          </span>
+          <span>
+            <MdModeEditOutline onClick={handleEdit} />
+          </span>
+        </div>
       </div>
-
-      <div className={styles.actionsWrapper}>
-        <span>
-          <MdDelete
-            onClick={() => onChangeTodo({ action: "delete", id: todo.id })}
-          />
-        </span>
-        <span>
-          <MdModeEditOutline />
-        </span>
-      </div>
-    </div>
+    </>
   );
 }
 
