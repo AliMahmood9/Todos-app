@@ -1,0 +1,24 @@
+.container {
+  background: #fff;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .detailsWrapper {
+    display: flex;
+    gap: 10px;
+  }
+  .actionsWrapper {
+    display: flex;
+    gap: 5px;
+    margin: 5px;
+    span {
+      padding: 2px 5px;
+      border-radius: 5px;
+      border: 1px solid #eeeeeeee;
+      cursor: pointer;
+    }
+  }
+}

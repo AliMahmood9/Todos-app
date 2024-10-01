@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+
+  button {
+    background-color: cornflowerblue;
+    color: #eee;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+  }
+  select {
+    // background-color: #f0f0f0;
+    // color: #333;
+    padding: 10px;
+    // border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100px;
+    font-size: 16px;
+    // appearance: none;
+    outline: none;
+  }
+}
