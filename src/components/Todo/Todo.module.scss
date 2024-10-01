@@ -1,14 +1,30 @@
 .container {
-  background: #fff;
+  background: #ffffff;
   border-radius: 5px;
-  padding: 5px;
-  margin: 20px;
+  padding: 10px 5px;
+  margin: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   .detailsWrapper {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+
+    .strikeThrough {
+      text-decoration: line-through;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+      text-align: left;
+    }
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+    }
   }
   .actionsWrapper {
     display: flex;

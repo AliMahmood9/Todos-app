@@ -5,7 +5,7 @@
   margin-bottom: 10px;
 
   button {
-    background-color: cornflowerblue;
+    background: #616fee;
     color: #eee;
     padding: 10px 20px;
     margin: 5px;
@@ -13,14 +13,10 @@
     border-radius: 5px;
   }
   select {
-    // background-color: #f0f0f0;
-    // color: #333;
     padding: 10px;
-    // border: 1px solid #ccc;
     border-radius: 4px;
-    width: 100px;
+    width: 150px;
     font-size: 16px;
-    // appearance: none;
     outline: none;
   }
 }
