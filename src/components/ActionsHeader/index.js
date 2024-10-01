@@ -1,19 +1,19 @@
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import styles from "./Actions.module.scss";
-import { TodosContext } from "../../TodosContext";
+import { TodosContext } from "../../context/TodosContext";
 
-const ActionsHeader = () => {
+const ActionsHeader = ({ onOpenModal }) => {
   const [filterValue, setSortValue] = useState("all");
-  const { onChangeTodo } = useContext(TodosContext);
+  const { filterCompleted } = useContext(TodosContext);
 
   const onChangeHandler = (e) => {
     setSortValue(e.target.value);
-    onChangeTodo({ action: "filter", value: filterValue });
+    filterCompleted();
   };
 
   return (
     <div className={styles.container}>
-      <button>Add Task</button>
+      <button onClick={onOpenModal}>Add Task</button>
       <select onChange={onChangeHandler} value={filterValue}>
         <option value="all">All</option>
         <option value="completed">Completed</option>
